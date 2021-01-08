@@ -1,0 +1,12 @@
+{
+  "name": "memory-card-game-js",
+  "displayName": "memory-card-game-js",
+  "expo": {
+    "name": "memory-card-game-js",
+    "slug": "memory-card-game-js",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
