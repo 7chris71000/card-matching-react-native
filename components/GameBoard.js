@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import GameTile from "./GameTile";
 
 const GameBoard = ({
   gameMatrix,
   onTilePressed,
+  difficulty
 }) => {
 
   return (
@@ -25,6 +26,7 @@ const GameBoard = ({
                     locked={locked}
                     onTilePressed={onTilePressed} 
                     totalColumns={column.length}
+                    difficulty={difficulty}
                   />
                 )
               })
