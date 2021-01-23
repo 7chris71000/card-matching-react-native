@@ -1,31 +1,116 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, Button } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import NumericInput from 'react-native-numeric-input';
+import { Picker } from '@react-native-picker/picker';
 
 const SetupGameScreen = ({ navigation, route }) => {
 
   const [matrix, setMatrix] = useState({columns: 4, rows: 4});
-  const [difficulty, setDifficulty] = useState('medium');
+  const [difficulty, setDifficulty] = useState('Medium');
   const [numberOfMatches, setNumberOfMatches] = useState(2);
 
-  return (      
+  const updateMatrix = (value, type) => {
+    if(type == 'columns') {
+      setMatrix({columns: value, rows: matrix['rows']})
+    } else if (type == 'rows') {
+      setMatrix({columns: matrix['columns'], rows: value})
+    }
+  }
+
+  return (
     <View style={styles.settingsContainer}>
-      <Text>test</Text>
-      <Button
-        title="Play"
-        onPress={() => 
-          navigation.navigate('GameScreen', { ...matrix, difficulty, numberOfMatches })
-        }
-      />
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Game Setup</Text>
+      </View>
+      <View style={styles.inputContainer}>
+        <Text style={styles.inputLabel}>Columns</Text>
+        <NumericInput 
+          value={matrix['columns']}
+          onChange={value => updateMatrix(value, 'columns')}
+        />
+
+        <Text style={styles.inputLabel}>Rows</Text>
+        <NumericInput
+          value={matrix['rows']}
+          onChange={value => updateMatrix(value, 'rows')}
+        />
+
+        <Picker
+          selectedValue={difficulty}
+          style={styles.difficultyPicker}
+          onValueChange={ itemValue => setDifficulty(itemValue) }
+        >
+          <Picker.Item label="Easy" value="Easy" />
+          <Picker.Item label="Medium" value="Medium" />
+          <Picker.Item label="Hard" value="Hard" />
+        </Picker>
+
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          onPress={() => 
+            navigation.navigate('GameScreen', { ...matrix, difficulty, numberOfMatches })
+          }
+          style={styles.playButton}
+        >
+          <Text style={styles.playButtonText}>Play</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  title: {
+    fontSize: 30
+  },
+  
+  inputLabel: {
+    fontSize: 25,
+    marginTop: 15,
+  },
+  playButton: {
+    height: 50,
+    width: 150,
+    
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+    shadowColor: 'black',
+    shadowRadius: 2,
+    shadowOpacity: 1,
+    backgroundColor: '#34a8eb',
+    borderRadius: 5,
+  },
+  playButtonText: {
+    fontSize: 20
+  },
+  
+  difficultyPicker: {
+    width: 150,
+  },
+
   settingsContainer: {
+    flex: 1,
+  },
+  titleContainer: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    
+  },
+  inputContainer: {
+    flex: 3,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+  buttonContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    top: 0,
+    alignItems: 'center',
   },
 });
 

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import { clockRunning } from 'react-native-reanimated';
 import GameBoard from '../components/GameBoard';
 
 const GameScreen = ({ navigation, route }) => {
   
   const [gameMatrix, setGameMatrix] = useState([]);
-
   const [selectedTiles, setSelectedTiles] = useState([]);
-
   const [numberLocked, setNumberLocked] = useState(0);
 
   useEffect(() => {
@@ -45,7 +44,6 @@ const GameScreen = ({ navigation, route }) => {
     
     selectedTiles.map((selectedTile, i) => {
       if(selectedTile.value == value) {
-        console.log('same')
         foundMatch = true;
         tempMatrix[rowNumber][columnNumber].locked = true;
         tempMatrix[selectedTile.rowNumber][selectedTile.columnNumber].locked = true;
@@ -54,16 +52,39 @@ const GameScreen = ({ navigation, route }) => {
     })
 
     if((selectedTiles.length == 0) || (!foundMatch && selectedTiles.length + 1 < route.params.numberOfMatches)) {
+      // havent found a match and we still are able to select another tile
       tempMatrix[rowNumber][columnNumber].selected = true;
       setSelectedTiles([...selectedTiles, tileInfo])
-    } else {
+    } else if(!foundMatch && selectedTiles.length + 1 == route.params.numberOfMatches) {
+      // havent found a match and we have hit the number of matches so show selected for a second
+      if(route.params.difficulty === 'Medium'){
+        tempMatrix[rowNumber][columnNumber].selected = true;
+        setSelectedTiles([...selectedTiles, tileInfo]);
+
+        setTimeout(() => {
+          selectedTiles.map((selectedTile, i) => {
+            tempMatrix[selectedTile.rowNumber][selectedTile.columnNumber].selected = false;
+          })
+          tempMatrix[rowNumber][columnNumber].selected = false;
+          setGameMatrix([...tempMatrix]);
+          setSelectedTiles([]);
+    
+        }, 1000);
+      } else {
+        selectedTiles.map((selectedTile, i) => {
+          tempMatrix[selectedTile.rowNumber][selectedTile.columnNumber].selected = false;
+        })
+        setSelectedTiles([])
+      }
+    } else if (foundMatch) {
+      // found match so set selected tiles back to []
       selectedTiles.map((selectedTile, i) => {
         tempMatrix[selectedTile.rowNumber][selectedTile.columnNumber].selected = false;
       })
       setSelectedTiles([])
     }
-  
-    setGameMatrix(tempMatrix);
+    
+    setGameMatrix([...tempMatrix]);
   }
 
   const createTileValueList = () => {
@@ -73,18 +94,28 @@ const GameScreen = ({ navigation, route }) => {
     for(let i = 0; i < (rows * columns); i++){
       tileValues.push(Math.floor(i % (rows * columns) / numberOfMatches))
     }
-    return tileValues.sort( () => .5 - Math.random() ); // uncomment when done
-    // return tileValues;
+    return tileValues.sort( () => .5 - Math.random() );
   }
 
   return (
     <View style={styles.gameContainer}>
-      {/* <Text>Difficulty: {route.params.difficulty}</Text> */}
-      <Text>Number of Colours to Match: {route.params.numberOfMatches}</Text>
-      <GameBoard gameMatrix={gameMatrix} onTilePressed={handleTilePressed}/>
-      { numberLocked == route.params.rows * route.params.columns &&
-        <Text>You Win!</Text>
-      }
+      <View style={styles.titleContainer}>
+        <Text>Difficulty: {route.params.difficulty}</Text>
+        <Text>Number of Colours to Match: {route.params.numberOfMatches}</Text>
+        <Text>Number of Selected Tiles: {selectedTiles.length}</Text>
+      </View>
+      <View style={styles.boardContainer}>
+
+        <GameBoard 
+          gameMatrix={gameMatrix} 
+          onTilePressed={handleTilePressed} 
+          difficulty={route.params.difficulty}
+          numberLocked={numberLocked}
+        />
+        { numberLocked == route.params.rows * route.params.columns &&
+          <Text>You Win!</Text>
+        }
+      </View>
     </View>
   );
 }
@@ -97,5 +128,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#E3E3E3',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  titleContainer: {
+    flex: 1
+  },
+  boardContainer: {
+    flex: 3
   }
 })

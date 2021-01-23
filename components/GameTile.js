@@ -10,6 +10,7 @@ const GameTile = ({
   locked,
   onTilePressed,
   totalColumns,
+  difficulty
 }) => {
   return (
     <TouchableOpacity 
@@ -31,12 +32,14 @@ const GameTile = ({
         onTilePressed: onTilePressed }) 
       }}
       key={value}
-      disabled={locked || selected}>
+      disabled={locked || selected}
+    >
       <Text style={{
             fontSize: 125 / totalColumns
-          }}>
+            }}
+      >
         {/* remove true when you want to hide numbers */}
-        { (true || selected || locked) && value } 
+        { (difficulty == 'Easy' || selected || locked) && value } 
       </Text>
     </TouchableOpacity>
   );

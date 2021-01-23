@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 const HomeScreen = ({ 
   navigation 
@@ -7,20 +8,19 @@ const HomeScreen = ({
   return (
     <View style={{flex: 1}}>
       <View style={styles.textContainer}>
-      <Text style={styles.title}>
+        <Text style={styles.title}>
           Welcome to Card Flipper!
-        </Text>
-        <Text>
-          Press Play to start.
         </Text>
       </View>
       <View style={styles.buttonContainer}>
-        <Button 
-          title="Play" 
+      <TouchableOpacity
           onPress={() => 
             navigation.navigate('SetupGameScreen')
           }
-        />
+          style={styles.playButton}
+        >
+          <Text style={styles.playButtonText}>Play</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -28,7 +28,7 @@ const HomeScreen = ({
 
 const styles = StyleSheet.create({
   textContainer: {
-    flex: 1,
+    flex: 2,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
@@ -40,8 +40,26 @@ const styles = StyleSheet.create({
   
   buttonContainer: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#fff',
-    top: 0,
+  },
+
+  playButton: {
+    height: 50,
+    width: 150,
+    
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+    shadowColor: 'black',
+    shadowRadius: 2,
+    shadowOpacity: 1,
+    backgroundColor: '#34a8eb',
+    borderRadius: 5,
+  },
+  playButtonText: {
+    fontSize: 20
   },
 });
 
