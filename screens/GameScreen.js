@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { clockRunning } from 'react-native-reanimated';
 import GameBoard from '../components/GameBoard';
 
-const GameScreen = ({ navigation, route }) => {
+const GameScreen = ({ route }) => {
   
   const [gameMatrix, setGameMatrix] = useState([]);
   const [selectedTiles, setSelectedTiles] = useState([]);

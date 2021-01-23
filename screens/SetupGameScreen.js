@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { View, StyleSheet, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import NumericInput from 'react-native-numeric-input';
 import { Picker } from '@react-native-picker/picker';
 

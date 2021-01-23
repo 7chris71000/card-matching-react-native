@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const HomeScreen = ({ 
   navigation 
