@@ -39,7 +39,7 @@ const GameScreen = ({ route }) => {
 
   const handleTilePressed = (tileInfo) => {
     const { rowNumber, columnNumber, value } = tileInfo;
-    let tempMatrix = gameMatrix;
+    let tempMatrix = [...gameMatrix];
     let foundMatch = false;
     setScore(score+1);
     
@@ -68,7 +68,7 @@ const GameScreen = ({ route }) => {
             tempMatrix[selectedTile.rowNumber][selectedTile.columnNumber].selected = false;
           })
           tempMatrix[rowNumber][columnNumber].selected = false;
-          setGameMatrix([...tempMatrix]);
+          setGameMatrix(tempMatrix);
           setSelectedTiles([]);
     
         }, 1000);
@@ -86,7 +86,7 @@ const GameScreen = ({ route }) => {
       setSelectedTiles([])
     }
     
-    setGameMatrix([...tempMatrix]);
+    setGameMatrix(tempMatrix);
   }
 
   const createTileValueList = () => {
