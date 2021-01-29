@@ -1,112 +1,98 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Animated, StyleSheet, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useSpring, animated } from 'react-spring/native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-const AnimatedView = animated(View);
-
-const FlippableCard = ({
-
-}) => {
-  const [flipped, setFlipped] = useState(true);
+const FlippableCard = () => {
 
   const [animatedValue, setAnimatedValue] = useState(new Animated.Value(0));
-  // const animation = useSpring({
-  //   to: { width: 100, opacity: 1 },
-  //   from: { width: 0, opacity: 0 },
-  //   delay: 1,
-  // })
+  const [frontInterpolate, setFrontInterpolate] = useState();
+  const [backInterpolate, setBackInterpolate] = useState();
+  const [flipValue, setFlipValue] = useState(0);
 
-  // const props = useSpring({
-  //   opacity: flipped ? 1 : 0,
-  //   transform: [
-  //     { rotateX: '45deg' }, 
-  //     { rotateZ: (flipped ? '0deg' : '90deg') }
-  //   ]
-  // })
+  useEffect(() => {
+
+    animatedValue.addListener(({ value }) => {
+      setFlipValue(value)
+    })
+
+    setFrontInterpolate(
+      animatedValue.interpolate({
+        inputRange: [0, 180],
+        outputRange: ['0deg', '180deg']
+      })
+    )
+    setBackInterpolate(
+      animatedValue.interpolate({
+        inputRange: [0, 180],
+        outputRange: ['180deg', '360deg']
+      })
+    )
+  }, []);
 
 
+  const flipCard = () => {
+    if( flipValue <= 90 ){
+      Animated.timing(animatedValue, {
+        toValue: 180,
+        friction: 8,
+        tension: 10,
+        useNativeDriver: true
+      }).start();
+    } else {
+      Animated.timing(animatedValue, {
+        toValue: 0,
+        friction: 8,
+        tension: 10,
+        useNativeDriver: true
+      }).start();
+    }
+  }
 
+  const frontAnimatedStyle = {
+    transform: [
+      { rotateX: frontInterpolate }
+    ]
+  }
+
+  const backAnimatedStyle = {
+    transform: [
+      { rotateX: backInterpolate }
+    ]
+  }
 
   return(
-    // <AnimatedView style={props} onPress={()=>{}}>
-    //   <TouchableOpacity onPress={() => setFlipped(!flipped)} style={styles.touchableButtonRed}>
-    //     <Text>test</Text>
-    //   </TouchableOpacity>
-    //   <TouchableOpacity onPress={() => setFlipped(!flipped)} style={styles.touchableButtonBlue}>
-    //     <Text>test</Text>
-    //   </TouchableOpacity>
-      
-    // </AnimatedView>
-    <View>
-      <View style={styles.touchableButtonBlue}>
-
-      </View>
-      <View>
-
-      </View>
+    <View style={styles.container}>
+      <Animated.View style={[styles.flipCard, styles.flipCardFront, frontAnimatedStyle]}/>
+      <Animated.View style={[styles.flipCard, styles.flipCardBack, backAnimatedStyle]}>
+        <TouchableWithoutFeedback style={[styles.testStyle]} onPress={flipCard}>
+          <Text>TEST</Text>
+        </TouchableWithoutFeedback>
+      </Animated.View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  touchableButtonRed: {
+  container: {
+    flex: 1
+  },
+  flipCard: {
     width: 100,
     height: 100,
-    backgroundColor: 'red',
-  
+    backfaceVisibility: 'hidden'
   },
-  touchableButtonBlue: {
+  flipCardFront: {
+    backgroundColor: '#86fca5',
+  },
+  flipCardBack: {
+    position: 'absolute',
+    top: 0,
+    backgroundColor: '#8ca7ff',
+  },
+  testStyle: {
     width: 100,
     height: 100,
-    backgroundColor: 'blue',
-  },
+  }
 });
 
 export default FlippableCard;
-
-// import React, { Component } from 'react'
-// import { StyleSheet, Text, View, TouchableWithoutFeedback } from 'react-native'
-// // import { Spring, animated } from 'react-spring/native'
-// import { Spring, animated } from 'react-spring/renderprops-native';
-
-// const styles = {
-//   flex: 1,
-//   margin: 0,
-//   backgroundColor: 'red',
-//   alignItems: 'center',
-//   justifyContent: 'center',
-// }
-
-// const AnimatedView = animated(View)
-
-// export default class FlippableCard extends Component {
-//   state = { flag: true }
-//   toggle = () => this.setState(state => ({ flag: !state.flag }))
-//   render() {
-//     const { flag } = this.state
-//     return (
-//       // <View>
-
-//       // </View>
-//       <Spring
-//         native
-//         from={{ margin: 0, rotate: 0 }}
-//         to={{ 
-//           margin: flag ? 100 : 0, 
-//           backgroundColor: flag ? 'green' : 'rgba(0,0,0,0.1)', 
-//           scale: flag ? 1 : 1.5,
-//           transform: `perspective(600px) rotateX(${flag ? 180 : 0}deg)` 
-//         }}
-//         config={{ tension: 10, friction: 150 }}>
-//         {({ scale, ...props }) => (
-//           <TouchableWithoutFeedback onPress={this.toggle}>
-//             <AnimatedView style={{ ...styles, ...props, transform: [{ scale }] }}>
-//               <Text>#######################</Text>
-//             </AnimatedView>
-//           </TouchableWithoutFeedback>
-//         )}
-//       </Spring>
-//     )
-//   }
-// }
