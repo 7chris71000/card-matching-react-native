@@ -7,6 +7,7 @@ const GameScreen = ({ route }) => {
   const [gameMatrix, setGameMatrix] = useState([]);
   const [selectedTiles, setSelectedTiles] = useState([]);
   const [numberLocked, setNumberLocked] = useState(0);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     createGameMatrix()
@@ -40,6 +41,7 @@ const GameScreen = ({ route }) => {
     const { rowNumber, columnNumber, value } = tileInfo;
     let tempMatrix = gameMatrix;
     let foundMatch = false;
+    setScore(score+1);
     
     selectedTiles.map((selectedTile, i) => {
       if(selectedTile.value == value) {
@@ -47,6 +49,7 @@ const GameScreen = ({ route }) => {
         tempMatrix[rowNumber][columnNumber].locked = true;
         tempMatrix[selectedTile.rowNumber][selectedTile.columnNumber].locked = true;
         setNumberLocked(numberLocked+2); // change the +2 when changing to match more than 2
+        setScore(score - 1)
       }
     })
 
@@ -98,10 +101,10 @@ const GameScreen = ({ route }) => {
 
   return (
     <View style={styles.gameContainer}>
-      <View style={styles.titleContainer}>
+      <View style={styles.textContainer}>
         <Text>Difficulty: {route.params.difficulty}</Text>
         <Text>Number of Colours to Match: {route.params.numberOfMatches}</Text>
-        <Text>Number of Selected Tiles: {selectedTiles.length}</Text>
+        <Text>Score: {score}</Text>
       </View>
       <View style={styles.boardContainer}>
 
@@ -112,7 +115,9 @@ const GameScreen = ({ route }) => {
           numberLocked={numberLocked}
         />
         { numberLocked == route.params.rows * route.params.columns &&
-          <Text>You Win!</Text>
+          <View style={styles.textContainer}>
+            <Text>You Win!</Text>
+          </View>
         }
       </View>
     </View>
@@ -128,10 +133,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  titleContainer: {
-    flex: 1
+  textContainer: {
+    flex: 1,
+    paddingTop: 10
   },
   boardContainer: {
-    flex: 3
+    flex: 3,
+    alignItems: 'center',
   }
 })
