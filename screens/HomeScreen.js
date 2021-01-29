@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import FlippableCard from '../components/FlippableCard';
 
 const HomeScreen = ({ 
   navigation 
@@ -13,12 +14,12 @@ const HomeScreen = ({
         </Text>
       </View>
       <View style={styles.buttonContainer}>
-      <TouchableOpacity
-          onPress={() => 
-            navigation.navigate('SetupGameScreen')
-          }
-          style={styles.playButton}
-        >
+        <FlippableCard/>
+        <TouchableOpacity
+            onPress={() => 
+              navigation.navigate('SetupGameScreen')
+            }
+            style={styles.playButton}>
           <Text style={styles.playButtonText}>Play</Text>
         </TouchableOpacity>
       </View>
