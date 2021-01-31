@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import FlippableCard from './FlippableCard';
 
 const GameTile = ({
   rowNumber,
@@ -9,60 +8,41 @@ const GameTile = ({
   selected,
   locked,
   onTilePressed,
-  totalColumns,
-  difficulty
+  totalColumns
 }) => {
-  return (
-    <TouchableOpacity 
-      style={
-        [ styles.matrixColumn, 
-          locked ? styles.locked : (selected ? styles.selected : styles.notSelected), 
-          {
-            height: 300 / totalColumns,
-            width: 300 / totalColumns,
-            borderRadius: '10%',
-          }
-        ]}
-      onPress={() => { onTilePressed( {
-        rowNumber: rowNumber,
-        columnNumber: columnNumber,
-        value: value,
-        selected: selected,
-        locked: locked,
-        onTilePressed: onTilePressed }) 
-      }}
-      key={value}
-      disabled={locked || selected}
-    >
-      <Text style={{
-            fontSize: 125 / totalColumns
-            }}
-      >
-        {/* remove true when you want to hide numbers */}
-        { (difficulty == 'Easy' || selected || locked) && value } 
-      </Text>
-    </TouchableOpacity>
-  );
-}
 
-export default GameTile;
+  const handleTilePressed = () => {
+    onTilePressed({
+      rowNumber: rowNumber,
+      columnNumber: columnNumber,
+      value: value,
+      selected: selected,
+      locked: locked 
+    })
+  }
 
-const styles = StyleSheet.create({
-  matrixColumn: {
+  const tileStyle = {
+    height: 300 / totalColumns,
+    width: 300 / totalColumns,
+    borderRadius: '10%',
+
     alignItems: 'center',
     justifyContent: 'center',
     margin: 3,
     shadowColor: 'black',
     shadowRadius: 2,
     shadowOpacity: 1,
-  },
-  selected: {
-    backgroundColor: 'green',
-  },
-  notSelected: {
-    backgroundColor: 'grey',
-  },
-  locked: {
-    backgroundColor: 'yellow',
   }
-})
+
+  return (
+    <FlippableCard
+      value={value}
+      onTilePressed={handleTilePressed}
+      totalColumns={totalColumns}
+      cardStyle={tileStyle}
+      flipped={locked || selected }
+    />
+  );
+}
+
+export default GameTile;

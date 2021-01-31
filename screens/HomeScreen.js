@@ -13,12 +13,11 @@ const HomeScreen = ({
         </Text>
       </View>
       <View style={styles.buttonContainer}>
-      <TouchableOpacity
-          onPress={() => 
-            navigation.navigate('SetupGameScreen')
-          }
-          style={styles.playButton}
-        >
+        <TouchableOpacity
+            onPress={() => 
+              navigation.navigate('SetupGameScreen')
+            }
+            style={styles.playButton}>
           <Text style={styles.playButtonText}>Play</Text>
         </TouchableOpacity>
       </View>
