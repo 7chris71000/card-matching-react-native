@@ -1,27 +1,34 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
+import { useRef } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-const FlippableCard = () => {
+
+const FlippableCard = ({
+  value,
+  onTilePressed,
+  totalColumns,
+  cardStyle,
+  flipped
+}) => {
 
   const [animatedValue, setAnimatedValue] = useState(new Animated.Value(0));
-  const [frontInterpolate, setFrontInterpolate] = useState();
-  const [backInterpolate, setBackInterpolate] = useState();
+  const [frontInterpolate, setFrontInterpolate] = useState("0deg");
+  const [backInterpolate, setBackInterpolate] = useState("0deg");
   const [flipValue, setFlipValue] = useState(0);
 
   useEffect(() => {
-
     animatedValue.addListener(({ value }) => {
       setFlipValue(value)
     })
 
-    setFrontInterpolate(
+    setBackInterpolate(
       animatedValue.interpolate({
         inputRange: [0, 180],
         outputRange: ['0deg', '180deg']
       })
     )
-    setBackInterpolate(
+    setFrontInterpolate(
       animatedValue.interpolate({
         inputRange: [0, 180],
         outputRange: ['180deg', '360deg']
@@ -29,6 +36,15 @@ const FlippableCard = () => {
     )
   }, []);
 
+  const firstUpdate = useRef(true);
+  useLayoutEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+
+    flipCard()
+  }, [flipped]);
 
   const flipCard = () => {
     if( flipValue <= 90 ){
@@ -61,11 +77,11 @@ const FlippableCard = () => {
   }
 
   return(
-    <View style={styles.container}>
-      <Animated.View style={[styles.flipCard, styles.flipCardFront, frontAnimatedStyle]}/>
-      <Animated.View style={[styles.flipCard, styles.flipCardBack, backAnimatedStyle]}>
-        <TouchableWithoutFeedback style={[styles.testStyle]} onPress={flipCard}>
-          <Text>TEST</Text>
+    <View>
+      <Animated.View style={[cardStyle, styles.flipCardBackVisibility, styles.flipCardBack, backAnimatedStyle]}/>
+      <Animated.View style={[cardStyle, styles.flipCardBackVisibility, styles.flipCardFront, frontAnimatedStyle]}>
+        <TouchableWithoutFeedback style={[cardStyle]} onPress={() => onTilePressed()} disabled={flipped}>
+          <Text style={{fontSize: 125 / totalColumns }}>{value}</Text>
         </TouchableWithoutFeedback>
       </Animated.View>
     </View>
@@ -73,25 +89,15 @@ const FlippableCard = () => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  flipCard: {
-    width: 100,
-    height: 100,
+  flipCardBackVisibility: {
     backfaceVisibility: 'hidden'
   },
-  flipCardFront: {
-    backgroundColor: '#86fca5',
-  },
   flipCardBack: {
-    position: 'absolute',
-    top: 0,
-    backgroundColor: '#8ca7ff',
+    backgroundColor: 'gray',
   },
-  testStyle: {
-    width: 100,
-    height: 100,
+  flipCardFront: {
+    position: 'absolute',
+    backgroundColor: '#86fca5',
   }
 });
 
