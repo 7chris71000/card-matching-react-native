@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Icon } from 'react-native-elements';
 import GameBoard from '../components/GameBoard';
 import ConfettiCannon from 'react-native-confetti-cannon';
 
@@ -13,6 +14,14 @@ const GameScreen = ({ route }) => {
   useEffect(() => {
     createGameMatrix()
   }, []);
+
+  const resetBoard = () => {
+    setGameMatrix([])
+    setSelectedTiles([])
+    setNumberLocked(0)
+    setScore(0)
+    createGameMatrix()
+  }
 
   const createGameMatrix = () => {
     const { rows, columns } = route.params;
@@ -102,25 +111,43 @@ const GameScreen = ({ route }) => {
 
   return (
     <View style={styles.gameContainer}>
+      
       <View style={styles.textContainer}>
-        <Text>Difficulty: {route.params.difficulty}</Text>
-        <Text>Number of Colours to Match: {route.params.numberOfMatches}</Text>
-        <Text>Score: {score}</Text>
+        <View style={styles.textBox}>
+          <Text style={styles.textEntity}>{route.params.difficulty}</Text>
+        </View>
+        <View style={styles.textBox}>
+          <Text style={styles.textEntity}>Matches: {route.params.numberOfMatches}</Text>
+        </View>
+        <View style={styles.textBox}>
+          <Text style={styles.textEntity}>Score: {score}</Text>
+        </View>
       </View>
-      <View style={styles.boardContainer}>
 
+      <View style={styles.boardContainer}>
         <GameBoard 
           gameMatrix={gameMatrix} 
           onTilePressed={handleTilePressed} 
           difficulty={route.params.difficulty}
           numberLocked={numberLocked}
         />
+        <TouchableOpacity style={styles.resetButton} onPress={() => resetBoard()}>
+          <Text style={styles.resetButtonText}>
+            Reset
+          </Text>
+          
+          <Icon 
+            name={'ios-reload-outline'}
+            type={'ionicon'}
+            containerStyle={styles.resetIcon}/>
+        </TouchableOpacity>
         { numberLocked == route.params.rows * route.params.columns &&
           <View style={styles.textContainer}>
             <Text>You Win!</Text>
           </View>
         }
       </View>
+
       { numberLocked == route.params.rows * route.params.columns &&
         <ConfettiCannon 
           count={200}
@@ -144,10 +171,46 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
-    paddingTop: 10
+    paddingTop: 10,
+    flexDirection: 'row',
+    width: '100%'
+  },
+  textBox: {
+    width: '33.33%',
+    alignItems: 'center',
+  },
+  textEntity: {
+    fontSize: 20,
+    position: 'absolute',
+    bottom: 10
   },
   boardContainer: {
-    flex: 3,
+    flex: 8,
     alignItems: 'center',
+  },
+  resetButton: {
+    height: 40,
+    width: 120,
+    
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+    shadowColor: 'black',
+    shadowRadius: 2,
+    shadowOpacity: 1,
+    backgroundColor: '#34a8eb',
+    borderRadius: 50,
+    flexDirection: 'row',
+
+    marginTop: 10
+  },
+  resetIcon: {
+    transform: [
+      { scaleX: -1 }
+    ],
+  },
+  resetButtonText: {
+    fontSize: 20,
+    marginRight: 10
   }
 })

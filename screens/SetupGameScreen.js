@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import NumericInput from 'react-native-numeric-input';
 import { Picker } from '@react-native-picker/picker';
+import { Icon } from 'react-native-elements';
 
 const SetupGameScreen = ({ navigation, route }) => {
 
@@ -54,7 +55,12 @@ const SetupGameScreen = ({ navigation, route }) => {
           }
           style={styles.playButton}
         >
-          <Text style={styles.playButtonText}>Play</Text>
+          <Text style={styles.playButtonText}>
+            Play
+          </Text>
+          <Icon 
+            name={'ios-chevron-forward-circle-outline'}
+            type={'ionicon'}/>
         </TouchableOpacity>
       </View>
     </View>
@@ -82,9 +88,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     backgroundColor: '#34a8eb',
     borderRadius: 5,
+    flexDirection: 'row'
   },
   playButtonText: {
-    fontSize: 20
+    fontSize: 20,
+    marginRight: 5,
+    marginLeft: 15
   },
   
   difficultyPicker: {
