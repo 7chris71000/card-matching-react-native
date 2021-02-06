@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import GameBoard from '../components/GameBoard';
+import ConfettiCannon from 'react-native-confetti-cannon';
 
 const GameScreen = ({ route }) => {
   
@@ -120,6 +121,14 @@ const GameScreen = ({ route }) => {
           </View>
         }
       </View>
+      { numberLocked == route.params.rows * route.params.columns &&
+        <ConfettiCannon 
+          count={200}
+          origin={{x: 0, y: 0}}
+          fadeOut={true}
+          explosionSpeed={500}
+        />
+      }
     </View>
   );
 }
