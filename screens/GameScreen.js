@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import GameBoard from '../components/GameBoard';
-import ConfettiCannon from 'react-native-confetti-cannon';
+import Celebrate from '../components/Celebrate';
 
 const GameScreen = ({ route }) => {
   
@@ -48,51 +48,55 @@ const GameScreen = ({ route }) => {
   } 
 
   const handleTilePressed = (tileInfo) => {
+    const { numberOfMatches } = route.params;
     const { rowNumber, columnNumber, value } = tileInfo;
     let tempMatrix = [...gameMatrix];
-    let foundMatch = false;
-    setScore(score+1);
-    
-    selectedTiles.map((selectedTile, i) => {
-      if(selectedTile.value == value) {
-        foundMatch = true;
-        tempMatrix[rowNumber][columnNumber].locked = true;
-        tempMatrix[selectedTile.rowNumber][selectedTile.columnNumber].locked = true;
-        setNumberLocked(numberLocked+2); // change the +2 when changing to match more than 2
-        setScore(score - 1)
-      }
-    })
+    let allMatch = true;
+    setScore(score+1);  
 
-    if((selectedTiles.length == 0) || (!foundMatch && selectedTiles.length + 1 < route.params.numberOfMatches)) {
-      // havent found a match and we still are able to select another tile
+    if(selectedTiles.length) {
+      // only enter if selected tiles has more than 1 entry
+      selectedTiles.map((selectedTile) => {
+        if(selectedTile.value !== value) {
+          // no need to continue since they are not all the same
+          allMatch = false;
+        }
+      })
+
+      if(allMatch && selectedTiles.length + 1 === numberOfMatches) {
+        // lock the selected tiles and active tile
+        selectedTiles.map(selectedTile => 
+          tempMatrix[selectedTile.rowNumber][selectedTile.columnNumber].locked = true
+        )
+        tempMatrix[rowNumber][columnNumber].locked = true;
+        setNumberLocked(numberLocked + numberOfMatches);
+        setScore(score - (numberOfMatches - 1))
+      }
+    }
+
+    if(!allMatch) {
+      // Didn't get all matches
+      tempMatrix[rowNumber][columnNumber].selected = true;
+      setSelectedTiles([...selectedTiles, tileInfo]);
+
+      setTimeout(() => {
+        selectedTiles.map(selectedTile => 
+          tempMatrix[selectedTile.rowNumber][selectedTile.columnNumber].selected = false
+        )
+        tempMatrix[rowNumber][columnNumber].selected = false;
+        setGameMatrix(tempMatrix);
+        setSelectedTiles([]);
+      }, 1000);
+
+    } else if (selectedTiles.length + 1 < numberOfMatches) {
+      // We still are able to select another tile
       tempMatrix[rowNumber][columnNumber].selected = true;
       setSelectedTiles([...selectedTiles, tileInfo])
-    } else if(!foundMatch && selectedTiles.length + 1 == route.params.numberOfMatches) {
-      // havent found a match and we have hit the number of matches so show selected for a second
-      if(route.params.difficulty === 'Medium'){
-        tempMatrix[rowNumber][columnNumber].selected = true;
-        setSelectedTiles([...selectedTiles, tileInfo]);
-
-        setTimeout(() => {
-          selectedTiles.map((selectedTile, i) => {
-            tempMatrix[selectedTile.rowNumber][selectedTile.columnNumber].selected = false;
-          })
-          tempMatrix[rowNumber][columnNumber].selected = false;
-          setGameMatrix(tempMatrix);
-          setSelectedTiles([]);
-    
-        }, 1000);
-      } else {
-        selectedTiles.map((selectedTile, i) => {
-          tempMatrix[selectedTile.rowNumber][selectedTile.columnNumber].selected = false;
-        })
-        setSelectedTiles([])
-      }
-    } else if (foundMatch) {
+    } else if (allMatch) {
       // found match so set selected tiles back to []
-      selectedTiles.map((selectedTile, i) => {
-        tempMatrix[selectedTile.rowNumber][selectedTile.columnNumber].selected = false;
-      })
+      selectedTiles.map(selectedTile => 
+        tempMatrix[selectedTile.rowNumber][selectedTile.columnNumber].selected = false
+      )
       setSelectedTiles([])
     }
     
@@ -114,7 +118,7 @@ const GameScreen = ({ route }) => {
       
       <View style={styles.textContainer}>
         <View style={styles.textBox}>
-          <Text style={styles.textEntity}>{route.params.difficulty}</Text>
+          <Text style={styles.textEntity}>{route.params.mode}</Text>
         </View>
         <View style={styles.textBox}>
           <Text style={styles.textEntity}>Matches: {route.params.numberOfMatches}</Text>
@@ -128,7 +132,7 @@ const GameScreen = ({ route }) => {
         <GameBoard 
           gameMatrix={gameMatrix} 
           onTilePressed={handleTilePressed} 
-          difficulty={route.params.difficulty}
+          mode={route.params.mode}
           numberLocked={numberLocked}
         />
         <TouchableOpacity style={styles.resetButton} onPress={() => resetBoard()}>
@@ -148,14 +152,7 @@ const GameScreen = ({ route }) => {
         }
       </View>
 
-      { numberLocked == route.params.rows * route.params.columns &&
-        <ConfettiCannon 
-          count={200}
-          origin={{x: 0, y: 0}}
-          fadeOut={true}
-          explosionSpeed={500}
-        />
-      }
+      <Celebrate fire={ numberLocked == route.params.rows * route.params.columns }/>
     </View>
   );
 }

@@ -8,7 +8,7 @@ import { Icon } from 'react-native-elements';
 const SetupGameScreen = ({ navigation, route }) => {
 
   const [matrix, setMatrix] = useState({columns: 4, rows: 4});
-  const [difficulty, setDifficulty] = useState('Medium');
+  const [mode, setMode] = useState('Normal');
   const [numberOfMatches, setNumberOfMatches] = useState(2);
 
   const updateMatrix = (value, type) => {
@@ -37,21 +37,26 @@ const SetupGameScreen = ({ navigation, route }) => {
           onChange={value => updateMatrix(value, 'rows')}
         />
 
+        <Text style={styles.inputLabel}>Number of Matches</Text>
+        <NumericInput
+          value={numberOfMatches}
+          onChange={value => setNumberOfMatches(value)}
+        />
+
         <Picker
-          selectedValue={difficulty}
-          style={styles.difficultyPicker}
-          onValueChange={ itemValue => setDifficulty(itemValue) }
+          selectedValue={mode}
+          style={styles.modePicker}
+          onValueChange={ itemValue => setMode(itemValue) }
         >
-          <Picker.Item label="Easy" value="Easy" />
-          <Picker.Item label="Medium" value="Medium" />
-          <Picker.Item label="Hard" value="Hard" />
+          <Picker.Item label="Normal" value="Normal" />
+          <Picker.Item label="Dev" value="Dev" />
         </Picker>
 
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => 
-            navigation.navigate('GameScreen', { ...matrix, difficulty, numberOfMatches })
+            navigation.navigate('GameScreen', { ...matrix, mode, numberOfMatches })
           }
           style={styles.playButton}
         >
@@ -96,7 +101,7 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   
-  difficultyPicker: {
+  modePicker: {
     width: 150,
   },
 
@@ -124,10 +129,3 @@ const styles = StyleSheet.create({
 });
 
 export default SetupGameScreen;
-
-/*
-* options in this screen
-* - matrix size (rows and columns)
-* - difficulty (easy, medium, hard)
-* - number of unique colours
-*/

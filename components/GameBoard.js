@@ -5,7 +5,7 @@ import GameTile from "./GameTile";
 const GameBoard = ({
   gameMatrix,
   onTilePressed,
-  difficulty
+  mode
 }) => {
 
   return (
@@ -26,7 +26,7 @@ const GameBoard = ({
                     locked={locked}
                     onTilePressed={onTilePressed} 
                     totalColumns={column.length}
-                    difficulty={difficulty}
+                    mode={mode}
                   />
                 )
               })

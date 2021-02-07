@@ -8,7 +8,8 @@ const GameTile = ({
   selected,
   locked,
   onTilePressed,
-  totalColumns
+  totalColumns,
+  mode
 }) => {
 
   const handleTilePressed = () => {
@@ -41,6 +42,7 @@ const GameTile = ({
       totalColumns={totalColumns}
       cardStyle={tileStyle}
       flipped={locked || selected }
+      mode={mode}
     />
   );
 }
