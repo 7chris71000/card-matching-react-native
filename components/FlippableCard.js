@@ -9,7 +9,8 @@ const FlippableCard = ({
   onTilePressed,
   totalColumns,
   cardStyle,
-  flipped
+  flipped,
+  mode
 }) => {
 
   const [animatedValue, setAnimatedValue] = useState(new Animated.Value(0));
@@ -78,7 +79,9 @@ const FlippableCard = ({
 
   return(
     <View>
-      <Animated.View style={[cardStyle, styles.flipCardBackVisibility, styles.flipCardBack, backAnimatedStyle]}/>
+      <Animated.View style={[cardStyle, styles.flipCardBackVisibility, styles.flipCardBack, backAnimatedStyle]}>
+        { mode === 'Dev' && <Text style={{fontSize: 125 / totalColumns }}>{value}</Text> }
+      </Animated.View>
       <Animated.View style={[cardStyle, styles.flipCardBackVisibility, styles.flipCardFront, frontAnimatedStyle]}>
         <TouchableWithoutFeedback style={[cardStyle]} onPress={() => onTilePressed()} disabled={flipped}>
           <Text style={{fontSize: 125 / totalColumns }}>{value}</Text>
@@ -97,7 +100,7 @@ const styles = StyleSheet.create({
   },
   flipCardFront: {
     position: 'absolute',
-    backgroundColor: '#86fca5',
+    backgroundColor: '#34a8eb',
   }
 });
 
