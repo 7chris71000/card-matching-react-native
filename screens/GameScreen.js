@@ -136,12 +136,11 @@ const GameScreen = ({ navigation, route }) => {
       date: `${new Date().toUTCString()}`
     }
 
-    addToArrayAndSave('@scores', gameData).then(result => {
+    addToArrayAndSave('@scores', gameData).then(() => {
       navigation.navigate('ScoreScreen')
     }).catch(error => {
       setErrorMessage(error);
     })
-
   }
 
   return (
@@ -222,7 +221,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     width: '100%',
     alignItems: 'center',
-
     flexDirection: 'row'
   },
   nameInput: {
@@ -231,16 +229,12 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     fontSize: 20,
-
     borderBottomLeftRadius: 50,
     borderTopLeftRadius: 50,
-
     shadowColor: 'black',
     shadowRadius: 3,
     shadowOpacity: 1,
-
     backgroundColor: '#E3E3E3',
-
     textAlign: 'center'
   },
   textBox: {
@@ -259,17 +253,14 @@ const styles = StyleSheet.create({
   resetButton: {
     height: 40,
     width: 120,
-    
     alignItems: 'center',
     justifyContent: 'center',
-    
     shadowColor: 'black',
     shadowRadius: 2,
     shadowOpacity: 1,
     backgroundColor: '#34a8eb',
     borderRadius: 50,
     flexDirection: 'row',
-
     marginTop: 10
   },
   resetIcon: {
@@ -284,17 +275,12 @@ const styles = StyleSheet.create({
   saveScoreButton: {
     height: 40,
     width: 120,
-    
     alignItems: 'center',
     justifyContent: 'center',
-    
     shadowColor: 'black',
     shadowRadius: 3,
-
-
     shadowOpacity: 1,
     backgroundColor: '#34a8eb',
-    
     borderBottomRightRadius: 50,
     borderTopRightRadius: 50,
   },

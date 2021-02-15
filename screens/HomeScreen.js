@@ -14,23 +14,23 @@ const HomeScreen = ({
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-            onPress={() => 
-              navigation.navigate('SetupGameScreen')
-            }
-            style={styles.button}>
+          onPress={() => navigation.navigate('SetupGameScreen')}
+          style={styles.button}
+        >
           <Text style={styles.buttonText}>Play</Text>
         </TouchableOpacity>
         <TouchableOpacity
-            onPress={() => 
-              navigation.navigate('ScoreScreen')
-            }
-            style={styles.button}>
+          onPress={() => navigation.navigate('ScoreScreen')}
+          style={styles.button}
+        >
           <Text style={styles.buttonText}>High Scores</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
+
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   textContainer: {
@@ -39,24 +39,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  
   title: {
     fontSize: 30
   },
-  
   buttonContainer: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#fff',
   },
-
   button: {
     height: 50,
     width: 150,
-    
     alignItems: 'center',
     justifyContent: 'center',
-    
     shadowColor: 'black',
     shadowRadius: 2,
     shadowOpacity: 1,
@@ -68,5 +63,3 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
 });
-
-export default HomeScreen;

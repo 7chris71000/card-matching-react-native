@@ -7,8 +7,6 @@ import SetupGameScreen from "../screens/SetupGameScreen";
 import GameScreen from '../screens/GameScreen';
 import ScoreScreen from '../screens/ScoreScreen';
 
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-
 const Stack = createStackNavigator();
 
 const MyStack = () => {

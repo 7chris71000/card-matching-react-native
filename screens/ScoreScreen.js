@@ -4,14 +4,13 @@ import { storeData, getData } from '../storage/DataStorage';
 import { DataTable } from 'react-native-paper';
 import { dummyScoreData } from '../storage/SeedData';
 
-const ScoreScreen = ({ route }) => {
+const ScoreScreen = () => {
   const [scores, setScores] = useState([]);
   const [page, setPage] = useState(0);
   const RESULTS_PER_PAGE = 10;
 
   useEffect(() => {
-    getData('@scores')
-      .then(result => setScores(result));
+    getData('@scores').then(result => setScores(result));
   }, []);
 
   useEffect(() => {
@@ -93,7 +92,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 10,
     alignItems: 'center',
-
     justifyContent: 'center',
   },
   textBox: {
@@ -111,17 +109,14 @@ const styles = StyleSheet.create({
   resetButton: {
     height: 40,
     width: 400,
-    
     alignItems: 'center',
     justifyContent: 'center',
-    
     shadowColor: 'black',
     shadowRadius: 2,
     shadowOpacity: 1,
     backgroundColor: '#34a8eb',
     borderRadius: 50,
     flexDirection: 'row',
-
     marginTop: 10
   },
   resetIcon: {
