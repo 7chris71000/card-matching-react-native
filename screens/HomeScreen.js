@@ -17,8 +17,15 @@ const HomeScreen = ({
             onPress={() => 
               navigation.navigate('SetupGameScreen')
             }
-            style={styles.playButton}>
-          <Text style={styles.playButtonText}>Play</Text>
+            style={styles.button}>
+          <Text style={styles.buttonText}>Play</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+            onPress={() => 
+              navigation.navigate('ScoreScreen')
+            }
+            style={styles.button}>
+          <Text style={styles.buttonText}>High Scores</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -40,11 +47,10 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#fff',
   },
 
-  playButton: {
+  button: {
     height: 50,
     width: 150,
     
@@ -56,8 +62,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     backgroundColor: '#34a8eb',
     borderRadius: 5,
+    marginTop: 10
   },
-  playButtonText: {
+  buttonText: {
     fontSize: 20
   },
 });

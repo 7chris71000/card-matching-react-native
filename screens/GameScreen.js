@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TextInput
+} from 'react-native';
 import { Icon } from 'react-native-elements';
 import GameBoard from '../components/GameBoard';
 import Celebrate from '../components/Celebrate';
+import { addToArrayAndSave } from '../storage/DataStorage';
 
-const GameScreen = ({ route }) => {
+const GameScreen = ({ navigation, route }) => {
   
   const [gameMatrix, setGameMatrix] = useState([]);
   const [selectedTiles, setSelectedTiles] = useState([]);
   const [numberLocked, setNumberLocked] = useState(0);
   const [score, setScore] = useState(0);
+  const [name, setName] = useState('');
+  const [errorMessage, setErrorMessage] = useState();
 
   useEffect(() => {
     createGameMatrix()
@@ -113,6 +122,28 @@ const GameScreen = ({ route }) => {
     return tileValues.sort( () => .5 - Math.random() );
   }
 
+  const onChangeName = input => {
+    setName(input);
+  }
+
+  const saveScore = () => {
+    const { rows, columns, numberOfMatches } = route.params;
+    const gameData = {
+      name,
+      matrix: `${rows}x${columns}`,
+      numberOfMatches: numberOfMatches,
+      score,
+      date: `${new Date().toUTCString()}`
+    }
+
+    addToArrayAndSave('@scores', gameData).then(result => {
+      navigation.navigate('ScoreScreen')
+    }).catch(error => {
+      setErrorMessage(error);
+    })
+
+  }
+
   return (
     <View style={styles.gameContainer}>
       
@@ -146,9 +177,23 @@ const GameScreen = ({ route }) => {
             containerStyle={styles.resetIcon}/>
         </TouchableOpacity>
         { numberLocked == route.params.rows * route.params.columns &&
-          <View style={styles.textContainer}>
-            <Text>You Win!</Text>
+          <View style={styles.winContainer}>
+            <TextInput
+              style={styles.nameInput}
+              onChangeText={text => onChangeName(text)}
+              value={name}
+              placeholder={'Name'}/>
+            <TouchableOpacity style={styles.saveScoreButton} onPress={() => saveScore()}>
+              <Text style={styles.saveScoreText}>
+                Save Score
+              </Text>
+            </TouchableOpacity>
           </View>
+        }
+        { errorMessage &&
+          <Text style={styles.errorMessageText}>
+            {errorMessage}
+          </Text>
         }
       </View>
 
@@ -171,6 +216,32 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     flexDirection: 'row',
     width: '100%'
+  },
+  winContainer: {
+    flex: 1,
+    paddingTop: 10,
+    width: '100%',
+    alignItems: 'center',
+
+    flexDirection: 'row'
+  },
+  nameInput: {
+    width: 200,
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    fontSize: 20,
+
+    borderBottomLeftRadius: 50,
+    borderTopLeftRadius: 50,
+
+    shadowColor: 'black',
+    shadowRadius: 3,
+    shadowOpacity: 1,
+
+    backgroundColor: '#E3E3E3',
+
+    textAlign: 'center'
   },
   textBox: {
     width: '33.33%',
@@ -209,5 +280,28 @@ const styles = StyleSheet.create({
   resetButtonText: {
     fontSize: 20,
     marginRight: 10
+  },
+  saveScoreButton: {
+    height: 40,
+    width: 120,
+    
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+    shadowColor: 'black',
+    shadowRadius: 3,
+
+
+    shadowOpacity: 1,
+    backgroundColor: '#34a8eb',
+    
+    borderBottomRightRadius: 50,
+    borderTopRightRadius: 50,
+  },
+  saveScoreText: {
+    fontSize: 20,
+  },
+  errorMessageText: {
+    color: 'red'
   }
 })
