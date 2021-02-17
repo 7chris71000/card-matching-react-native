@@ -131,7 +131,7 @@ const GameScreen = ({ navigation, route }) => {
     const gameData = {
       name,
       matrix: `${rows}x${columns}`,
-      numberOfMatches: numberOfMatches,
+      matches: numberOfMatches,
       score,
       date: `${new Date().toUTCString()}`
     }
