@@ -40,7 +40,6 @@ const ScoreScreen = () => {
     }
 
     let tempSortingDirections = {...sortingDirections};
-    console.log(tempSortingDirections);
     Object.entries(tempSortingDirections).forEach(([type, direction]) => {
       if(type == sortType) {
         tempSortingDirections[sortType] = SORTING_TYPES[newSortTypeLoc];
