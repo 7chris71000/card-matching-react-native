@@ -40,19 +40,20 @@ const ScoreScreen = () => {
     }
 
     let tempSortingDirections = {...sortingDirections};
-    Object.entries(tempSortingDirections).forEach(([type, direction]) => {
+    Object.entries(tempSortingDirections).forEach(([type, _]) => {
       if(type == sortType) {
         tempSortingDirections[sortType] = SORTING_TYPES[newSortTypeLoc];
       } else {
         tempSortingDirections[type] = undefined;
       }
     })
+    console.log(tempSortingDirections); //for some reason this has to be here for the sorting to work as expected
     setSortingDirections(tempSortingDirections);
   }
 
   const sortScores = () => {
     const tempScores = [...scores];
-    let sortInfo = Object.entries(sortingDirections).find(([type, direction]) => direction !== undefined);
+    let sortInfo = Object.entries(sortingDirections).find(([_, direction]) => direction !== undefined);
 
     if(sortInfo) {
       const sortType = sortInfo[0];
