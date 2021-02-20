@@ -24,15 +24,20 @@ This is a card matching game created to practice react-native development. An ex
 ## Screens
 
 **Home**
+![Home Screen](https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/HomeScreen.png)
 
 **Game Setup**
+![Setup Screen](https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/SetupScreen.png?raw=true)
 
-**Game Screen Fresh**
+**Game Screen (Start)**
+![Game Start Screen](https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/GameScreenFresh.png)
 
-**Game Screen Played**
+**Game Screen (Playing)**
+![Game Playing Screen](https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/GameScreenPlayed.png)
 
-**Game Screen Finished**
+**Game Screen (Finished)**
+![Game Finished Screen](https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/GameScreenFinished.png)
 
 **High Scores**
-
+![High Scores Screen](https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/HighScoresScreen.png)
 
