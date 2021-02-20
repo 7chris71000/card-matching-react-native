@@ -24,20 +24,36 @@ This is a card matching game created to practice react-native development. An ex
 ## Screens
 
 **Home**
-![Home Screen](https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/HomeScreen.png)
+
+<img src='https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/HomeScreen.png?raw=true' alt='Home' height='500'>
+
+---
 
 **Game Setup**
-![Setup Screen](https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/SetupScreen.png?raw=true)
+
+<img src='https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/SetupScreen.png?raw=true' alt='Setup Game' height='500'>
+
+---
 
 **Game Screen (Start)**
-![Game Start Screen](https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/GameScreenFresh.png)
+
+<img src='https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/GameScreenFresh.png?raw=true' alt='Game Start' height='500'>
+
+---
 
 **Game Screen (Playing)**
-![Game Playing Screen](https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/GameScreenPlayed.png)
+
+<img src='https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/GameScreenPlayed.png?raw=true' alt='Game Playing' height='500'>
+
+---
 
 **Game Screen (Finished)**
-![Game Finished Screen](https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/GameScreenFinished.png)
+
+<img src='https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/GameScreenFinished.png?raw=true' alt='Game Finished' height='500'>
+
+---
 
 **High Scores**
-![High Scores Screen](https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/HighScoresScreen.png)
+
+<img src='https://github.com/7chris71000/card-matching-react-native/blob/master/images/screenshots/HighScoresScreen.png?raw=true' alt='High Scores' height='500'>
 
