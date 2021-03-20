@@ -5,20 +5,14 @@ import SetupGameScreen from '../screens/SetupGameScreen';
 const navigation = { navigate: jest.fn() };
 
 describe('<SetupGameScreen/>', () => {
-  it('should match snapshot', () => {
-    const result = render(<SetupGameScreen navigation={navigation}/>).toJSON();
-    expect(result).toMatchSnapshot();
-  });
+  let result;
+  beforeEach(() => result = render(<SetupGameScreen navigation={navigation}/>));
 
-  it('should render the SetupGameScreen component', () => {
-    const result = render(<SetupGameScreen navigation={navigation}/>);
-    expect(result).toBeTruthy();
-  });
+  it('should match snapshot', () => expect(result.toJSON()).toMatchSnapshot());
+  it('should render the SetupGameScreen component', () => expect(result).toBeTruthy());
 
   it('should navigate to game screen on press of Play', () => {
-    const result = render(<SetupGameScreen navigation={navigation}/>);
     const playButton = result.getByTestId('playButton');
-
     fireEvent(playButton, 'press');
 
     // object is the state variables from the form

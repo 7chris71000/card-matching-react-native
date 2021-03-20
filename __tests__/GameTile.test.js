@@ -3,13 +3,9 @@ import { render } from '@testing-library/react-native';
 import GameTile from '../components/GameTile';
 
 describe('<GameTile/>', () => {
-  it('should match snapshot', () => {
-    const result = render(<GameTile/>).toJSON();
-    expect(result).toMatchSnapshot();
-  });
+  let result;
+  beforeEach(() => result = render(<GameTile/>));
 
-  it('should render the GameTile component', () => {
-    const result = render(<GameTile/>);
-    expect(result).toBeTruthy();
-  });
+  it('should match snapshot', () => expect(result.toJSON()).toMatchSnapshot());
+  it('should render the GameTile component', () => expect(result).toBeTruthy());
 });
