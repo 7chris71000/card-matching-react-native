@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomeScreen/> should match snapshot 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "flex": 2,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 30,
+        }
+      }
+    >
+      Welcome to Card Flipper!
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "flex": 1,
+      }
+    }
+    testID="test"
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#34a8eb",
+          "borderRadius": 5,
+          "height": 50,
+          "justifyContent": "center",
+          "marginTop": 10,
+          "opacity": 1,
+          "shadowColor": "black",
+          "shadowOpacity": 1,
+          "shadowRadius": 2,
+          "width": 150,
+        }
+      }
+      testID="playButton"
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 20,
+          }
+        }
+      >
+        Play
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#34a8eb",
+          "borderRadius": 5,
+          "height": 50,
+          "justifyContent": "center",
+          "marginTop": 10,
+          "opacity": 1,
+          "shadowColor": "black",
+          "shadowOpacity": 1,
+          "shadowRadius": 2,
+          "width": 150,
+        }
+      }
+      testID="scoresButton"
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 20,
+          }
+        }
+      >
+        High Scores
+      </Text>
+    </View>
+  </View>
+</View>
+`;

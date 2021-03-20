@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NumericStepper/> should match snapshot 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "borderBottomLeftRadius": 5,
+        "borderColor": "#cccccc",
+        "borderTopLeftRadius": 5,
+        "borderWidth": 1,
+        "height": 50,
+        "justifyContent": "center",
+        "opacity": 1,
+        "width": 50,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 20,
+        }
+      }
+    >
+      -
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "borderColor": "#cccccc",
+        "borderWidth": 1,
+        "height": 50,
+        "justifyContent": "center",
+        "width": 50,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 20,
+        }
+      }
+    />
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "borderBottomRightRadius": 5,
+        "borderColor": "#cccccc",
+        "borderTopRightRadius": 5,
+        "borderWidth": 1,
+        "height": 50,
+        "justifyContent": "center",
+        "opacity": 1,
+        "width": 50,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 20,
+        }
+      }
+    >
+      +
+    </Text>
+  </View>
+</View>
+`;

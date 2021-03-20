@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GameTile/> should match snapshot 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backfaceVisibility": "hidden",
+        "backgroundColor": "gray",
+        "borderRadius": "10%",
+        "height": NaN,
+        "justifyContent": "center",
+        "margin": 3,
+        "shadowColor": "black",
+        "shadowOpacity": 1,
+        "shadowRadius": 2,
+        "transform": Array [
+          Object {
+            "rotateX": "0deg",
+          },
+        ],
+        "width": NaN,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backfaceVisibility": "hidden",
+        "backgroundColor": "#34a8eb",
+        "borderRadius": "10%",
+        "height": NaN,
+        "justifyContent": "center",
+        "margin": 3,
+        "position": "absolute",
+        "shadowColor": "black",
+        "shadowOpacity": 1,
+        "shadowRadius": 2,
+        "transform": Array [
+          Object {
+            "rotateX": "180deg",
+          },
+        ],
+        "width": NaN,
+      }
+    }
+  >
+    <RNGestureHandlerButton
+      collapsable={false}
+      onGestureEvent={[Function]}
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      onHandlerStateChange={[Function]}
+      rippleColor={0}
+    >
+      <View
+        accessible={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "borderRadius": "10%",
+            "height": NaN,
+            "justifyContent": "center",
+            "margin": 3,
+            "shadowColor": "black",
+            "shadowOpacity": 1,
+            "shadowRadius": 2,
+            "width": NaN,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": NaN,
+            }
+          }
+        />
+      </View>
+    </RNGestureHandlerButton>
+  </View>
+</View>
+`;
