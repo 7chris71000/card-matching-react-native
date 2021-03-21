@@ -13,8 +13,7 @@ const GameBoard = ({
       { gameMatrix.map((column, i) => {
         return (
           <View style={styles.matrixRow} key={i}>
-            {column && 
-              column.map((tile, j) => {
+            { column.map((tile, j) => {
                 const { rowNumber, columnNumber, value, selected, locked } = tile;
                 return (
                   <GameTile 

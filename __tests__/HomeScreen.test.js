@@ -9,7 +9,6 @@ describe('<HomeScreen/>', () => {
   beforeEach(() => result = render(<HomeScreen navigation={navigation}/>));
 
   it('should match snapshot', () => expect(result.toJSON()).toMatchSnapshot());
-
   it('should render the HomeScreen component', () => expect(result).toBeTruthy());
 
   it('should navigate to setup game screen on press of Play', () => {

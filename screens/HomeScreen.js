@@ -12,7 +12,7 @@ const HomeScreen = ({
           Welcome to Card Flipper!
         </Text>
       </View>
-      <View style={styles.buttonContainer} testID={"test"}>
+      <View style={styles.buttonContainer}>
         <TouchableOpacity
           testID={'playButton'}
           onPress={() => navigation.navigate('SetupGameScreen')}
