@@ -214,7 +214,6 @@ exports[`<App /> should match snapshot 1`] = `
                             "flex": 1,
                           }
                         }
-                        testID="test"
                       >
                         <View
                           accessible={true}
