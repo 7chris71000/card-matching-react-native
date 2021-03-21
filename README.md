@@ -67,6 +67,6 @@ _Note: If you have any problems running this application using the above steps p
 This app uses [jest](https://jestjs.io/) and [react-native-testing-library](https://github.com/callstack/react-native-testing-library). Follow these steps to test locally.
 
 1. Visit repository in terminal
-2. `yarn test` to run all tests
-   1. `yarn test -u` after you update a component to create a new snapshot
-   2. `yarn test __tests__/<Component Name>.test.js` to run a single components tests
+2. `$ yarn test` to run all tests
+   1. `$ yarn test -u` after you update a component to create a new snapshot
+   2. `$ yarn test __tests__/<Component Name>.test.js` to run a single components tests
