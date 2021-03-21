@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FlippableCard/> should match snapshot 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "backfaceVisibility": "hidden",
+        "backgroundColor": "gray",
+        "transform": Array [
+          Object {
+            "rotateX": "0deg",
+          },
+        ],
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "backfaceVisibility": "hidden",
+        "backgroundColor": "#34a8eb",
+        "position": "absolute",
+        "transform": Array [
+          Object {
+            "rotateX": "180deg",
+          },
+        ],
+      }
+    }
+  >
+    <RNGestureHandlerButton
+      collapsable={false}
+      onGestureEvent={[Function]}
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      onHandlerStateChange={[Function]}
+      rippleColor={0}
+    >
+      <View
+        accessible={true}
+        style={Object {}}
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": NaN,
+            }
+          }
+        />
+      </View>
+    </RNGestureHandlerButton>
+  </View>
+</View>
+`;

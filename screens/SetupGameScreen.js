@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { Icon } from 'react-native-elements';
 import NumericStepper from '../components/NumericStepper';
@@ -110,6 +109,7 @@ const SetupGameScreen = ({ navigation, route }) => {
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
+          testID='playButton'
           onPress={() => navigation.navigate('GameScreen', { ...matrix, mode, numberOfMatches }) }
           style={styles.playButton}
         >

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 
 const HomeScreen = ({ 
   navigation 
@@ -14,12 +14,14 @@ const HomeScreen = ({
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
+          testID={'playButton'}
           onPress={() => navigation.navigate('SetupGameScreen')}
           style={styles.button}
         >
           <Text style={styles.buttonText}>Play</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          testID={'scoresButton'}
           onPress={() => navigation.navigate('ScoreScreen')}
           style={styles.button}
         >

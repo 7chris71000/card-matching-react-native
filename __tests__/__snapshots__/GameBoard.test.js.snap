@@ -1,0 +1,375 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GameBoard/> should match snapshot 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "borderColor": "white",
+      "borderRadius": 10,
+      "borderWidth": 10,
+      "margin": 10,
+      "shadowColor": "black",
+      "shadowOpacity": 1,
+      "shadowRadius": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "margin": 3,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backfaceVisibility": "hidden",
+            "backgroundColor": "gray",
+            "borderRadius": "10%",
+            "height": 150,
+            "justifyContent": "center",
+            "margin": 3,
+            "shadowColor": "black",
+            "shadowOpacity": 1,
+            "shadowRadius": 2,
+            "transform": Array [
+              Object {
+                "rotateX": "0deg",
+              },
+            ],
+            "width": 150,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backfaceVisibility": "hidden",
+            "backgroundColor": "#34a8eb",
+            "borderRadius": "10%",
+            "height": 150,
+            "justifyContent": "center",
+            "margin": 3,
+            "position": "absolute",
+            "shadowColor": "black",
+            "shadowOpacity": 1,
+            "shadowRadius": 2,
+            "transform": Array [
+              Object {
+                "rotateX": "180deg",
+              },
+            ],
+            "width": 150,
+          }
+        }
+      >
+        <RNGestureHandlerButton
+          collapsable={false}
+          onGestureEvent={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onHandlerStateChange={[Function]}
+          rippleColor={0}
+        >
+          <View
+            accessible={true}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderRadius": "10%",
+                "height": 150,
+                "justifyContent": "center",
+                "margin": 3,
+                "shadowColor": "black",
+                "shadowOpacity": 1,
+                "shadowRadius": 2,
+                "width": 150,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "fontSize": 62.5,
+                }
+              }
+            >
+              1
+            </Text>
+          </View>
+        </RNGestureHandlerButton>
+      </View>
+    </View>
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backfaceVisibility": "hidden",
+            "backgroundColor": "gray",
+            "borderRadius": "10%",
+            "height": 150,
+            "justifyContent": "center",
+            "margin": 3,
+            "shadowColor": "black",
+            "shadowOpacity": 1,
+            "shadowRadius": 2,
+            "transform": Array [
+              Object {
+                "rotateX": "0deg",
+              },
+            ],
+            "width": 150,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backfaceVisibility": "hidden",
+            "backgroundColor": "#34a8eb",
+            "borderRadius": "10%",
+            "height": 150,
+            "justifyContent": "center",
+            "margin": 3,
+            "position": "absolute",
+            "shadowColor": "black",
+            "shadowOpacity": 1,
+            "shadowRadius": 2,
+            "transform": Array [
+              Object {
+                "rotateX": "180deg",
+              },
+            ],
+            "width": 150,
+          }
+        }
+      >
+        <RNGestureHandlerButton
+          collapsable={false}
+          onGestureEvent={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onHandlerStateChange={[Function]}
+          rippleColor={0}
+        >
+          <View
+            accessible={true}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderRadius": "10%",
+                "height": 150,
+                "justifyContent": "center",
+                "margin": 3,
+                "shadowColor": "black",
+                "shadowOpacity": 1,
+                "shadowRadius": 2,
+                "width": 150,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "fontSize": 62.5,
+                }
+              }
+            >
+              1
+            </Text>
+          </View>
+        </RNGestureHandlerButton>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "margin": 3,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backfaceVisibility": "hidden",
+            "backgroundColor": "gray",
+            "borderRadius": "10%",
+            "height": 150,
+            "justifyContent": "center",
+            "margin": 3,
+            "shadowColor": "black",
+            "shadowOpacity": 1,
+            "shadowRadius": 2,
+            "transform": Array [
+              Object {
+                "rotateX": "0deg",
+              },
+            ],
+            "width": 150,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backfaceVisibility": "hidden",
+            "backgroundColor": "#34a8eb",
+            "borderRadius": "10%",
+            "height": 150,
+            "justifyContent": "center",
+            "margin": 3,
+            "position": "absolute",
+            "shadowColor": "black",
+            "shadowOpacity": 1,
+            "shadowRadius": 2,
+            "transform": Array [
+              Object {
+                "rotateX": "180deg",
+              },
+            ],
+            "width": 150,
+          }
+        }
+      >
+        <RNGestureHandlerButton
+          collapsable={false}
+          onGestureEvent={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onHandlerStateChange={[Function]}
+          rippleColor={0}
+        >
+          <View
+            accessible={true}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderRadius": "10%",
+                "height": 150,
+                "justifyContent": "center",
+                "margin": 3,
+                "shadowColor": "black",
+                "shadowOpacity": 1,
+                "shadowRadius": 2,
+                "width": 150,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "fontSize": 62.5,
+                }
+              }
+            >
+              1
+            </Text>
+          </View>
+        </RNGestureHandlerButton>
+      </View>
+    </View>
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backfaceVisibility": "hidden",
+            "backgroundColor": "gray",
+            "borderRadius": "10%",
+            "height": 150,
+            "justifyContent": "center",
+            "margin": 3,
+            "shadowColor": "black",
+            "shadowOpacity": 1,
+            "shadowRadius": 2,
+            "transform": Array [
+              Object {
+                "rotateX": "0deg",
+              },
+            ],
+            "width": 150,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backfaceVisibility": "hidden",
+            "backgroundColor": "#34a8eb",
+            "borderRadius": "10%",
+            "height": 150,
+            "justifyContent": "center",
+            "margin": 3,
+            "position": "absolute",
+            "shadowColor": "black",
+            "shadowOpacity": 1,
+            "shadowRadius": 2,
+            "transform": Array [
+              Object {
+                "rotateX": "180deg",
+              },
+            ],
+            "width": 150,
+          }
+        }
+      >
+        <RNGestureHandlerButton
+          collapsable={false}
+          onGestureEvent={[Function]}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          onHandlerStateChange={[Function]}
+          rippleColor={0}
+        >
+          <View
+            accessible={true}
+            style={
+              Object {
+                "alignItems": "center",
+                "borderRadius": "10%",
+                "height": 150,
+                "justifyContent": "center",
+                "margin": 3,
+                "shadowColor": "black",
+                "shadowOpacity": 1,
+                "shadowRadius": 2,
+                "width": 150,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "fontSize": 62.5,
+                }
+              }
+            >
+              1
+            </Text>
+          </View>
+        </RNGestureHandlerButton>
+      </View>
+    </View>
+  </View>
+</View>
+`;
