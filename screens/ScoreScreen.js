@@ -87,73 +87,80 @@ const ScoreScreen = () => {
       </View>
 
       <View style={styles.tableContainer}>
-        
-        <DataTable>
-          <DataTable.Header>
-            <DataTable.Title 
-              style={styles.nameCell}
-              sortDirection={sortingDirections.name}
-              onPress={() => handleSortingPress('name')}>
-                Name
-            </DataTable.Title>
-            <DataTable.Title 
-              style={styles.centerCell}
-              sortDirection={sortingDirections.matrix}
-              onPress={() => handleSortingPress('matrix')}>
-                Matrix
-            </DataTable.Title>
-            <DataTable.Title 
-              style={styles.centerCell}
-              sortDirection={sortingDirections.matches}
-              onPress={() => handleSortingPress('matches')}>
-                Matches
-            </DataTable.Title>
-            <DataTable.Title numeric 
-              style={styles.centerCell}
-              sortDirection={sortingDirections.score}
-              onPress={() => handleSortingPress('score')}>
-                Score
-            </DataTable.Title>
-            <DataTable.Title 
-              style={styles.dateCell}
-              sortDirection={sortingDirections.date}
-              onPress={() => handleSortingPress('date')}>
-                Date
-            </DataTable.Title>
-          </DataTable.Header>
+        {
+          /* need this conditional for testing. 
+          *  DataTable is mocked out and set to undefined therefore it fails on all DataTable.attribute.
+          *  There might be a way to mock out Header, Title, ... , etc. 
+          */
+        }
+        { DataTable && 
+          <DataTable>
+            <DataTable.Header>
+              <DataTable.Title 
+                style={styles.nameCell}
+                sortDirection={sortingDirections.name}
+                onPress={() => handleSortingPress('name')}>
+                  Name
+              </DataTable.Title>
+              <DataTable.Title 
+                style={styles.centerCell}
+                sortDirection={sortingDirections.matrix}
+                onPress={() => handleSortingPress('matrix')}>
+                  Matrix
+              </DataTable.Title>
+              <DataTable.Title 
+                style={styles.centerCell}
+                sortDirection={sortingDirections.matches}
+                onPress={() => handleSortingPress('matches')}>
+                  Matches
+              </DataTable.Title>
+              <DataTable.Title numeric 
+                style={styles.centerCell}
+                sortDirection={sortingDirections.score}
+                onPress={() => handleSortingPress('score')}>
+                  Score
+              </DataTable.Title>
+              <DataTable.Title 
+                style={styles.dateCell}
+                sortDirection={sortingDirections.date}
+                onPress={() => handleSortingPress('date')}>
+                  Date
+              </DataTable.Title>
+            </DataTable.Header>
 
-          { scores.slice(page * RESULTS_PER_PAGE, (page + 1) * RESULTS_PER_PAGE).map((value, index) => {
-            const { name, matrix, matches, score, date } = value;
-            const scoreDate = new Date(date);
-            
-            return (
-              <DataTable.Row key={index}>
-                <DataTable.Cell style={styles.nameCell}>
-                  <Text>{name}</Text>
-                </DataTable.Cell>
-                <DataTable.Cell style={styles.centerCell}>
-                  <Text>{matrix}</Text>
-                </DataTable.Cell>
-                <DataTable.Cell style={styles.centerCell}>
-                  <Text>{matches}</Text>
-                </DataTable.Cell>
-                <DataTable.Cell numeric style={styles.centerCell}>
-                  <Text>{score}</Text>
-                </DataTable.Cell>
-                <DataTable.Cell style={styles.dateCell}>
-                  {scoreDate.toLocaleDateString()} ({scoreDate.getHours()}:{scoreDate.getMinutes()})
-                </DataTable.Cell>
-              </DataTable.Row>
-            )          
-          })}
+            { scores.slice(page * RESULTS_PER_PAGE, (page + 1) * RESULTS_PER_PAGE).map((value, index) => {
+              const { name, matrix, matches, score, date } = value;
+              const scoreDate = new Date(date);
+              
+              return (
+                <DataTable.Row key={index}>
+                  <DataTable.Cell style={styles.nameCell}>
+                    <Text>{name}</Text>
+                  </DataTable.Cell>
+                  <DataTable.Cell style={styles.centerCell}>
+                    <Text>{matrix}</Text>
+                  </DataTable.Cell>
+                  <DataTable.Cell style={styles.centerCell}>
+                    <Text>{matches}</Text>
+                  </DataTable.Cell>
+                  <DataTable.Cell numeric style={styles.centerCell}>
+                    <Text>{score}</Text>
+                  </DataTable.Cell>
+                  <DataTable.Cell style={styles.dateCell}>
+                    {scoreDate.toLocaleDateString()} ({scoreDate.getHours()}:{scoreDate.getMinutes()})
+                  </DataTable.Cell>
+                </DataTable.Row>
+              )          
+            })}
 
-          <DataTable.Pagination
-            page={page}
-            numberOfPages={Math.ceil(scores.length / RESULTS_PER_PAGE)}
-            onPageChange={page => setPage(page)}
-            label={`Page ${(page + 1)} of ${Math.ceil(scores.length / RESULTS_PER_PAGE)}`}
-            />
-        </DataTable>
+            <DataTable.Pagination
+              page={page}
+              numberOfPages={Math.ceil(scores.length / RESULTS_PER_PAGE)}
+              onPageChange={page => setPage(page)}
+              label={`Page ${(page + 1)} of ${Math.ceil(scores.length / RESULTS_PER_PAGE)}`}
+              />
+          </DataTable>
+        }
       </View>
     </View>
   );

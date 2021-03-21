@@ -2,7 +2,7 @@ import React from 'react';
 import { act, render } from '@testing-library/react-native';
 import ScoreScreen from '../screens/ScoreScreen';
 
-// Need to figure out how to work with the child component - DataTable. Currently is mocked out
+jest.mock('react-native-paper', () => 'DataTable');
 
 describe('<ScoreScreen/>', () => {
   let result;
@@ -10,8 +10,13 @@ describe('<ScoreScreen/>', () => {
 
   it('should match snapshot', async () => {
     await act(async () => {
-      expect(result.toJSON()).toMatchSnapshot()
+      expect(result.toJSON()).toMatchSnapshot();
     })
   });
-  it('should render the ScoreScreen component', () => expect(result).toBeTruthy());
+
+  it('should render the ScoreScreen component', async () => {
+    await act(async () => {
+      expect(result).toBeTruthy();
+    })
+  });
 });
