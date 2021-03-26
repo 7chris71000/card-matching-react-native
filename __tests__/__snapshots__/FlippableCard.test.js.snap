@@ -29,27 +29,33 @@ exports[`<FlippableCard/> should match snapshot 1`] = `
       }
     }
   >
-    <RNGestureHandlerButton
-      collapsable={false}
-      onGestureEvent={[Function]}
-      onGestureHandlerEvent={[Function]}
-      onGestureHandlerStateChange={[Function]}
-      onHandlerStateChange={[Function]}
-      rippleColor={0}
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="flipCardId"
     >
-      <View
-        accessible={true}
-        style={Object {}}
-      >
-        <Text
-          style={
-            Object {
-              "fontSize": NaN,
-            }
+      <Text
+        style={
+          Object {
+            "fontSize": 41.666666666666664,
           }
-        />
-      </View>
-    </RNGestureHandlerButton>
+        }
+      >
+        1
+      </Text>
+    </View>
   </View>
 </View>
 `;

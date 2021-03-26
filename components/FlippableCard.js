@@ -1,8 +1,5 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react'
-import { useRef } from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import { Animated, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 const FlippableCard = ({
   value,
@@ -83,9 +80,15 @@ const FlippableCard = ({
         { mode === 'Dev' && <Text style={{fontSize: 125 / totalColumns }}>{value}</Text> }
       </Animated.View>
       <Animated.View style={[cardStyle, styles.flipCardBackVisibility, styles.flipCardFront, frontAnimatedStyle]}>
-        <TouchableWithoutFeedback style={[cardStyle]} onPress={() => onTilePressed()} disabled={flipped}>
+        <TouchableOpacity
+          testID={'flipCardId'}
+          style={[cardStyle]}
+          onPress={() => onTilePressed()}
+          disabled={flipped}
+          activeOpacity={1.0}
+        >
           <Text style={{fontSize: 125 / totalColumns }}>{value}</Text>
-        </TouchableWithoutFeedback>
+        </TouchableOpacity>
       </Animated.View>
     </View>
   );
