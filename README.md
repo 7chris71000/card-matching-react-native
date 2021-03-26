@@ -70,3 +70,5 @@ This app uses [jest](https://jestjs.io/) and [react-native-testing-library](http
 2. `$ yarn test` to run all tests
    1. `$ yarn test -u` after you update a component to create a new snapshot
    2. `$ yarn test __tests__/<Component Name>.test.js` to run a single components tests
+
+test
